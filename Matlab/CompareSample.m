@@ -13,15 +13,15 @@ hold on;
 plot(source_points.selectStrongest(50));
 
 
-% Visual 25 SURF features
+% Visual 50 SURF features
 figure;
-subplot(5,5,3); 
-title('First 25 Features');
+subplot(5,10,3); 
+title('First 50 Features');
 
-for i = 1:25
+for i = 1:50
     scale = source_points(i).Scale;
     image = imcrop(source_image, [source_points(i).Location - 10 * scale 20 * scale 20 * scale]);
-    subplot(5,5,i);
+    subplot(5,10,i);
     imshow(image);
     hold on;
     rectangle('Position', [5 * scale 5 * scale 10 * scale 10 * scale], 'Curvature', 1, 'EdgeColor', 'g');
@@ -54,8 +54,9 @@ title('Showing all matches');
 
 
 % Define Geometric Transformation Objects
-gte = vision.GeometricTransformEstimator; 
-gte.Method = 'Random Sample Consensus (RANSAC)';
+%gte = vision.GeometricTransformEstimator; 
+gte = geometricTransform2d();
+%gte.Method = 'Random Sample Consensus (RANSAC)';
 
 [tform_matrix, inlierIdx] = step(gte, ref_matched_pts, I_matched_pts);
 
