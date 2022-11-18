@@ -1,4 +1,4 @@
-from djitellopy import tello
+from djitellopy import Tello
 import keyboard as key
 import cv2
 import time
@@ -7,7 +7,7 @@ width = 320
 height = 240
 startCounter = 0
 
-drone = tello.Tello()
+drone = Tello()
 drone.connect()
 print(drone.get_battery())
 
