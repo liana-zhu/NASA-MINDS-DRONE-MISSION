@@ -1,4 +1,4 @@
-from djitellopy import Tello
+from djitellopy import tello
 import KeyPressModule as key
 import cv2
 import time
@@ -17,9 +17,19 @@ drone.streamon()
 # 0: forward camera
 # 1: bottom camera
 drone.set_video_direction(1)
+
+drone.takeoff()
+
 while True:
     image = drone.get_frame_read().frame
     #img = cv2.resize(img, (360,240))
     cv2.imshow("Image", image)
     cv2.imwrite(f'11_18_2022/image-capture/{time,time()}.jpg', image)
-    cv2.waitKey(1)
+    drone.rotate_clockwise(90)
+    time.sleep(3)
+    drone.move_left(35)
+    time.sleep(3)
+    drone.land()
+    if cv2.waitKey(32) == ord('Space'):
+        drone.land()
+        break
