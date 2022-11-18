@@ -1,5 +1,5 @@
 from djitellopy import tello
-import KeyPressModule as key
+import keyboard as key
 import cv2
 import time
 
@@ -29,6 +29,10 @@ while True:
     time.sleep(3)
     drone.move_left(35)
     time.sleep(3)
-    if cv2.waitKey(32) == ord('Space'):
+    # if cv2.waitKey(32) == ord('Space'):
+    #     drone.land()
+    #     break
+    
+    if key.read_key() == 'space':
         drone.land()
         break
