@@ -29,7 +29,6 @@ while True:
     time.sleep(3)
     drone.move_left(35)
     time.sleep(3)
-    drone.land()
     if cv2.waitKey(32) == ord('Space'):
         drone.land()
         break
